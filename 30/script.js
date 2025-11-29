@@ -28,13 +28,18 @@ function checkWin(){
         alert(`${array[2]} has won the game!`);
         return;
     }
+
+   //means if there is no any null value in the array then its a draw
+    if(!array.some(elem => elem === null)){
+        alert("It's a draw!");
+    } 
 }
 
 function resetGame() {
     currentPlayer = "X";
     array = Array(9).fill(null);
-
-
+     
+    
     const cells = document.querySelectorAll(".col");
     cells.forEach(cell => cell.innerText = "");
 
@@ -42,10 +47,15 @@ function resetGame() {
 
 
 
+
+
+
 //element stores the id of the clicked button
 function handleClick(element) {
+
     //here we are converting the id from string to number
     const id = Number(element.id); 
+     if(array[id] != null) return; 
     //here we are updating the array at the index id with currentPlayer value
     array[id] = currentPlayer;
     //element has the id so we are updating the innerText of that element with currentPlayer value
